@@ -21,15 +21,16 @@ function playRound(humanChoice, computerChoice) {
     // Human wins
     if (humanChoice === "rock" && computerChoice === "scissors" || humanChoice === "paper" && computerChoice === "rock" || humanChoice === "scissors" && computerChoice === "paper") {
         humanScore += 1
-        console.log(`You win! ${humanChoice} beats ${computerChoice}`)
+        scoreToUi(`You win! ${humanChoice} beats ${computerChoice}`)
     }
     else if (computerChoice === "rock" && humanChoice === "scissors" || computerChoice === "paper" && humanChoice === "rock" || computerChoice === "scissors" && humanChoice === "paper") {
         computerScore += 1
-        console.log(`You lose! ${computerChoice} beats ${humanChoice}`)
+        scoreToUi(`You lose! ${computerChoice} beats ${humanChoice}`)
     }
     else {
-        console.log(`It's a tie! Both chose ${humanChoice}`)
+        scoreToUi(`It's a tie! Both chose ${humanChoice}`)
     }
+    checkGameEnd()
 }
 
 const btns = document.querySelectorAll("button")
@@ -39,3 +40,23 @@ btns.forEach(btn => {
         playRound(btn.textContent, getComputerChoice())
     })
 })
+
+function checkGameEnd() {
+    if (humanScore === 5) {
+        scoreToUi("You have won the machine!")
+    }
+    else if (computerScore === 5) {
+        scoreToUi("The computer has defeated you! Better luck next time")
+    }
+}
+
+function scoreToUi(prompt) {
+
+    const div = document.querySelector("#score")
+    div.textContent = prompt
+
+    const human = document.querySelector("#human")
+    human.textContent = `Human - ${humanScore}`
+    const computer = document.querySelector("#computer")
+    computer.textContent = `Computer - ${computerScore}`
+}
