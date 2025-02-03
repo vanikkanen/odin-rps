@@ -21,23 +21,9 @@ function playGame() {
     let humanScore = 0
     let computerScore = 0
 
-    const rounds = 5
-
-    for (let i = 0; i < rounds; i++) {
-        let humanChoice = getHumanChoice()
-        let computerChoice = getComputerChoice()
-        playRound(humanChoice, computerChoice)
-    }
-
-    if (humanScore > computerScore) {
-        console.log(`You win the game! You scored ${humanScore} vs ${computerScore}`)
-    }
-    else if (computerScore > humanScore) {
-        console.log(`You lose the game! You scored ${humanScore} vs ${computerScore}`)
-    }
-    else {
-        copnsole.log(`It's a tie! You both scored ${humanScore}`)
-    }
+    let humanChoice = getHumanChoice()
+    let computerChoice = getComputerChoice()
+    playRound(humanChoice, computerChoice)
 
 
     function playRound(humanChoice, computerChoice) {
