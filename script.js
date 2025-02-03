@@ -11,11 +11,14 @@ function getComputerChoice() {
     }
 }
 
-humanScore = 0
-computerScore = 0
+let humanScore = 0
+let computerScore = 0
 
+let gameOver = false
 
 function playRound(humanChoice, computerChoice) {
+
+    if (gameOver) return
 
     humanChoice = humanChoice.toLowerCase()
     // Human wins
@@ -44,9 +47,11 @@ btns.forEach(btn => {
 function checkGameEnd() {
     if (humanScore === 5) {
         scoreToUi("You have won the machine!")
+        gameOver = true
     }
     else if (computerScore === 5) {
         scoreToUi("The computer has defeated you! Better luck next time")
+        gameOver = true
     }
 }
 
